@@ -119,4 +119,3 @@ zaheenData((trainer, typesManager) => {
     pokedex.renderPokemon(trainer.pokemon[pokedex.index]);
   });
 });
-
