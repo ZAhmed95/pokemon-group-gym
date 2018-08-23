@@ -1,12 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Group Gym</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pokedex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Signika" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
 <body>
-  
+  <header class="row">
+    <nav class="red accent-4">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo title-font flow-text center" id="pokedex-title">Pokedex</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="row">
+      <!-- Left col on wide screens -->
+      <div class="col s12 l6">
+        <!-- Pokemon name and control buttons -->
+        <div class="row valign-wrapper">
+          <div class="col s12">
+            <h5 class="title-font center">
+              <button class="btn-floating left btn-small red" id="previous"> <i class="material-icons">chevron_left</i> </button>
+              <span id="pokemon-name"> Pokemon Name </span>
+              <button class="btn-floating right btn-small red" id="next"> <i class="material-icons right">chevron_right</i> </button>
+            </h5>
+          </div>
+        </div>
+
+        <!-- Pokemon sprite image -->
+        <div class="row">
+          <div class="col s12 center-align">
+            <!-- Loading spinner -->
+            <div class="preloader-wrapper active" id="img-spinner">
+              <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+            <img src="" id="pokemon-img" class="responsive-img">
+          </div>
+        </div>
+
+        <!-- Description of pokemon -->
+        <div class="row">
+          <section class="col s12">
+            <div class="card red lighten-5">
+              <div class="card-content">
+                <span class="card-title title-font">Description</span>
+                <div class="divider black"></div><br>
+                <p class="text-font" id="pokemon-description">
+                    This is some description about the chosen pokemon. Right now it contains filler text, but it will contain real information once a pokemon is chosen.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Right col on wide screens -->
+      <div class="col s12 l6">
+        <!-- Collapsible for additional info -->
+        <div class="row">
+          <section class="col s12">
+            <ul class="collapsible">
+              <li class="active" id="types-and-weaknesses">
+                <div class="collapsible-header red accent-4 title-font white-text"> Types and Weaknesses </div>
+                <div class="collapsible-body red lighten-5">
+                  <div class="row">
+                    <div class="col s6">
+                      <h5 class="title-font">Types</h5>
+                      <div class="divider black"></div><br>
+                      <ul class="text-font" id="types">
+                      </ul>
+                    </div>
+        
+                    <div class="col s6">
+                      <h5 class="title-font">Weaknesses</h5>
+                      <div class="divider black"></div><br>
+                      <ul class="text-font" id="weaknesses">
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li id="physical-stats">
+                <div class="collapsible-header red accent-4 title-font white-text"> Physical Stats </div>
+                <div class="collapsible-body red lighten-5">
+                  <div class="row" id="stat-hp">
+                    <div class="col s5 title-font">HP</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-hp-text">0</div>
+                    </div>
+                  </div>
+                  <div class="row" id="stat-atk">
+                    <div class="col s5 title-font">Attack</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-atk-text">0</div>
+                    </div>
+                  </div>
+                  <div class="row" id="stat-def">
+                    <div class="col s5 title-font">Defense</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-def-text">0</div>
+                    </div>
+                  </div>
+                  <div class="row" id="stat-sp-atk">
+                    <div class="col s5 title-font">Special Attack</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-sp-atk-text">0</div>
+                    </div>
+                  </div>
+                  <div class="row" id="stat-sp-def">
+                    <div class="col s5 title-font">Special Defense</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-sp-def-text">0</div>
+                    </div>
+                  </div>
+                  <div class="row" id="stat-speed">
+                    <div class="col s5 title-font">Speed</div>
+                    <div class="col s12 white no-padding">
+                      <div class="text-font blue stat-bar" id="stat-speed-text">0</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li id="other-stats">
+                <div class="collapsible-header red accent-4 title-font white-text"> Other Stats </div>
+                <div class="collapsible-body">
+                  <div class="row">
+                    <div class="col offset-s1 s4">
+                      <h6 class="title-font">Height</h6>
+                      <p class="text-font" id="height"></p>
+                    </div>
+
+                    <div class="col offset-s1 s4">
+                      <h6 class="title-font">Weight</h6>
+                      <p class="text-font" id="weight"></p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col offset-s1 s4">
+                      <h6 class="title-font">Abilities</h6>
+                      <ul id="abilities">
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
