@@ -7,14 +7,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto|Signika" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
-<body>
+<body id= "gradient">
+
+      <!-- sidenav bar -->
+  <ul id="slide-out" class="sidenav">
+
+      <li>
+        <div class="user-view">
+          <div class="background">
+          </div>
+          <a href="#user">
+            <img class="circle" src="trainer/terraIggie.gif">
+          </a>
+          <a href="#name">
+            <span class="black-text name">Terra Igneous</span>
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="#!">
+          <i class="material-icons">face</i>About The Trainer</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="subheader">Age: 15</a>
+      </li>
+      <li>
+        <a class="subheader">Gender: female</a>
+      </li>
+      <li>
+        <a class="subheader">Eye-Color: Brown</a>
+      </li>
+      <li>
+        <a class="subheader">Hair-Color: Brown</a>
+      </li>
+      <li>
+        <a class="subheader">Hometown: Brail City</a>
+      </li>
+    </ul>
+
   <header class="row">
     <nav class="red accent-4">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo title-font flow-text center" id="pokedex-title">Pokedex</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-up">
+            <i class="material-icons">add_circle</i>
+          </a>
       </div>
     </nav>
   </header>
@@ -175,6 +219,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="background-gradient.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
