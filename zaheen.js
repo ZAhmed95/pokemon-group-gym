@@ -35,7 +35,7 @@ function zaheenData(callback){
         }
 
         return function get(key) {
-          if (key in ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed"]){
+          if (key in keyTransform){
             return this.stats[keyTransform[key]];
           }
           else {
