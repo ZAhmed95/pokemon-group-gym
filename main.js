@@ -155,11 +155,11 @@ function updatePokedex(trainer){
   pokedex.renderPokemon();
 }
 
-//when janice's data is ready,
-// janiceData((trainer) => {
-//   //update pokedex
-//   updatePokedex(trainer);
-// })
+// when janice's data is ready,
+janiceData((trainer) => {
+  //update pokedex
+  updatePokedex(trainer);
+})
 
 //when zaheen's data is ready,
 zaheenData((trainer, typesManager) => {
