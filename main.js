@@ -58,12 +58,17 @@ function initializePokedex(){
         return pokemon[index];
       }
 
+      function all(){
+        return pokemon;
+      }
+
       //how many pokemon are stored in the gym
       var count = () => pokemon.length;
 
       return {
         add,
         get,
+        all,
         count
       }
     })(), //call the closure to generate gym object
@@ -170,6 +175,11 @@ zaheenData((trainer, typesManager) => {
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
+    pokedex.gym.all().forEach(pokemon => {
+      if (pokemon.weaknesses.length == 0){
+        pokemon.weaknesses = typesManager.createWeaknessesList(pokemon.types);
+      }
+    });
     pokedex.renderPokemon();
   });
 });
