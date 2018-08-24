@@ -21,12 +21,36 @@ function zaheenData(callback){
       this.weight = weight;
       this.abilities = abilities;
       this.weaknesses = [];
+
+      this.get = (function(){
+        //a dictionary to transform the key passed into the get function
+        //into the corresponding key in the stats object
+        var keyTransform = {
+          hp: "hp",
+          attack: "atk",
+          defense: "def",
+          specialAttack: "spAtk",
+          specialDefense: "spDef",
+          speed: "speed"
+        }
+
+        return function get(key) {
+          if (key in ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed"]){
+            return this.stats[keyTransform[key]];
+          }
+          else {
+            return this[key];
+          }
+        }
+      })();
       //tell typesManager to create weaknesses list for this pokemon,
       //when typesManager is ready
       typesManager.onReady(() => {
         this.weaknesses = typesManager.createWeaknessesList(this.types);
       });
     }
+
+    
   }
 
   //set up axios instance
