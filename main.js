@@ -92,7 +92,7 @@ function initializePokedex(){
   }
   function next(){
     if (pokedex.count != 0){
-      pokedex.index = (pokedex.index - 1 + pokedex.gym.count()) % pokedex.gym.count();
+      pokedex.index = (pokedex.index + 1 + pokedex.gym.count()) % pokedex.gym.count();
       pokedex.renderPokemon();
     }
   }
@@ -170,7 +170,7 @@ zaheenData((trainer, typesManager) => {
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
-    pokedex.renderPokemon(trainer.pokemon[pokedex.index]);
+    pokedex.renderPokemon();
   });
 });
 

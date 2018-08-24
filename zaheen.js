@@ -215,7 +215,11 @@ function zaheenData(callback){
         //and initialize the pokedex
         if (index == promises.length - 1){
           var trainer = {
-            name: "Zia",
+            name: "zia",
+            age: 15,
+            gender: "male",
+            trainerClass: "Pokemon trainer",
+            hometown: "Pallet Town",
             pokemon, //an array of all pokemon this trainer has
           }
           trainer.all = () => trainer.pokemon, //function that returns all the trainer's pokemon
