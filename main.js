@@ -92,7 +92,7 @@ function initializePokedex(){
   }
   function next(){
     if (pokedex.count != 0){
-      pokedex.index = (pokedex.index - 1 + pokedex.gym.count()) % pokedex.gym.count();
+      pokedex.index = (pokedex.index + 1 + pokedex.gym.count()) % pokedex.gym.count();
       pokedex.renderPokemon();
     }
   }
@@ -155,11 +155,11 @@ function updatePokedex(trainer){
   pokedex.renderPokemon();
 }
 
-//when janice's data is ready,
-// janiceData((trainer) => {
-//   //update pokedex
-//   updatePokedex(trainer);
-// })
+// when janice's data is ready,
+janiceData((trainer) => {
+  //update pokedex
+  updatePokedex(trainer);
+})
 
 //when zaheen's data is ready,
 zaheenData((trainer, typesManager) => {
@@ -168,6 +168,6 @@ zaheenData((trainer, typesManager) => {
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
-    pokedex.renderPokemon(trainer.pokemon[pokedex.index]);
+    pokedex.renderPokemon();
   });
 });
