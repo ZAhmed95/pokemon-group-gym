@@ -20,8 +20,6 @@ class Trainer {
   
   }
   
-  // const terra = new Trainer("Terra", "female", "Pokemon trainer");
-  
   // console.log(terra);
   
   class Pokeball {
@@ -65,55 +63,6 @@ class Trainer {
   }
   }
   
-  let para = document.getElementById("info1");
-  
-  function terrasPokemon(pokemon) {
-    if (pokemon.name === "cyndaquil") {
-      para = document.getElementById("info2");
-    } else if (pokemon.name === "larvitar") {
-      para = document.getElementById("info3");
-    }
-  
-    para.innerHTML = (`id: ${ pokemon.id }<br>
-    name: ${ pokemon.name }<br>
-    weight: ${ pokemon.weight }lbs<br>
-    height: ${ pokemon.height }<br>
-    type: ${ pokemon.type }<br>
-    hp: ${ pokemon.hp }<br>
-    attack: ${ pokemon.attack }<br>
-    defense: ${ pokemon.defense }<br>
-    abilities: ${ pokemon.abilities }`);
-  }
-  
-  // let paratwo = document.getElementById("info2");
-  
-  // function terrasPokemon2(pokemon) {
-  
-  //   paratwo.innerHTML = (`id: ${ pokemon.id }<br>
-  //   name: ${ pokemon.name }<br>
-  //   weight: ${ pokemon.weight }lbs<br>
-  //   height: ${ pokemon.height }<br>
-  //   type: ${ pokemon.type }<br>
-  //   hp: ${ pokemon.hp }<br>
-  //   attack: ${ pokemon.attack }<br>
-  //   defense: ${ pokemon.defense }<br>
-  //   abilities: ${ pokemon.abilities }`);
-  // }
-  
-  // let parathree = document.getElementById("info3");
-  
-  // function terrasPokemon3(pokemon) {
-  
-  //   parathree.innerHTML = (`id: ${ pokemon.id }<br>
-  //   name: ${ pokemon.name }<br>
-  //   weight: ${ pokemon.weight }lbs<br>
-  //   height: ${ pokemon.height }<br>
-  //   type: ${ pokemon.type }<br>
-  //   hp: ${ pokemon.hp }<br>
-  //   attack: ${ pokemon.attack }<br>
-  //   defense: ${ pokemon.defense }<br>
-  //   abilities: ${ pokemon.abilities }`);
-  // }
   
   
   
@@ -135,67 +84,6 @@ class Trainer {
   
   console.log(poke1);
   
-  // // console.log(catchem[0].data.name)
-  // let monstername1= poke1.name;
-  // console.log(monstername1)
-  
-  // let monstername1hp= poke1.stats[5].base_stat; 
-  // // console.log(catchem[0].data.hp)
-  // console.log(monstername1hp)
-  
-  // let monstername1attack= poke1.stats[4].base_stat;
-  // // console.log(catchem[0].data.attack)
-  // console.log(monstername1attack)
-  
-  // let monstername1defense= poke1.stats[3].base_stat;
-  // // console.log(catchem[0].data.defense)
-  // console.log(monstername1defense)
-  
-  // let monstername1abilities= catchem[0].data.abilities
-  // // console.log(catchem[0].data.abilities)
-  // console.log(monstername1abilities)
-  
-  
-  // let monstername2= catchem[1].data.name
-  // console.log(monstername2)
-  
-  // let monstername2hp= catchem[1].data.stats[5].base_stat; 
-  // // console.log(catchem[0].data.hp)
-  // console.log(monstername2hp)
-  
-  // let monstername2attack= catchem[1].data.attack
-  // // console.log(catchem[0].data.attack)
-  // console.log(monstername2attack)
-  
-  // let monstername2defense= catchem[1].data.defense
-  // // console.log(catchem[0].data.defense)
-  // console.log(monstername2defense)
-  
-  // let monstername2abilities= catchem[1].data.abilities
-  // // console.log(catchem[0].data.abilities)
-  // console.log(monstername2abilities)
-  
-  
-  
-  
-  // let monstername3= catchem[2].data.name
-  // console.log(monstername3)
-  
-  // let monstername3hp= catchem[2].data.hp 
-  // // console.log(catchem[0].data.hp)
-  // console.log(monstername3hp)
-  
-  // let monstername3attack= catchem[2].data.attack
-  // // console.log(catchem[0].data.attack)
-  // console.log(monstername3attack)
-  
-  // let monstername3defense= catchem[2].data.defense
-  // // console.log(catchem[0].data.defense)
-  // console.log(monstername3defense)
-  
-  // let monstername3abilities= catchem[2].data.abilities
-  // // console.log(catchem[0].data.abilities)
-  // console.log(monstername3abilities)
   
   
 
