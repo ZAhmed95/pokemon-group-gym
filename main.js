@@ -159,15 +159,35 @@ function updatePokedex(trainer){
 janiceData((trainer) => {
   //update pokedex
   updatePokedex(trainer);
+  trainerInfo(trainer, 1)
 })
 
 //when zaheen's data is ready,
 zaheenData((trainer, typesManager) => {
   //update pokedex
   updatePokedex(trainer);
+  trainerInfo(trainer, 0)
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
     pokedex.renderPokemon(trainer.pokemon[pokedex.index]);
   });
 });
+
+// tooltip info
+function trainerInfo(trainer, index) {
+ 
+  let trainerToolTip = Array.from(document.querySelectorAll(".tooltipped")) [index]
+  console.log(trainerToolTip)
+  trainerToolTip.setAttribute("data-tooltip",  
+    ` 
+      ${ trainer.name}<br>
+      ${ trainer.age}<br>
+      ${ trainer.gender}<br>
+      ${ trainer.trainerClass}<br>
+      ${ trainer.hometown}<br>
+    `)
+  M.AutoInit();
+
+
+}
