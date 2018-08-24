@@ -1,9 +1,11 @@
 function janiceData(callback){
 
 class Trainer {
-  constructor(name, gender, hometown){ 
+  constructor(name, age, gender, trainerClass, hometown){ 
   this.name = name;
+  this.age = age;
   this.gender = gender;
+  this.trainerClass = trainerClass;
   this.hometown = hometown;
   this.pokemon = [];
   }
@@ -94,7 +96,7 @@ class Trainer {
   
 
   
-  const terra = new Trainer("Terra", "female", "Pokemon trainer");
+  const terra = new Trainer("terra", 15, "female", "Pokemon trainer", "Brail City");
   
   let bulbasaurInfo = "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger."
   
