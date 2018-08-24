@@ -37,13 +37,41 @@ function initializePokedex(){
     height: document.querySelector("#height"),
     weight: document.querySelector("#weight"),
     abilities: document.querySelector("#abilities"),
+    //create closure for gym object
+    gym: (() => {
+      var name = "Fulton Gym";
+      var pokemon = []; //list of all pokemon in this gym
+      //function to add more pokemon
+      function add(newPokemon){
+        //if an array is passed in,
+        if (Array.isArray(newPokemon)){
+          //merge the arrays
+          pokemon = pokemon.concat(newPokemon);
+        }
+        else {
+          //otherwise, add the single pokemon passed in
+          pokemon.append(newPokemon);
+        }
+      }
+
+      function get(index){
+        return pokemon[index];
+      }
+
+      //how many pokemon are stored in the gym
+      var count = () => pokemon.length;
+
+      return {
+        add,
+        get,
+        count
+      }
+    })(), //call the closure to generate gym object
 
     //controlling pokedex functionality
-    count: 0, //how many pokemon are stored in the pokedex
     index: 0, //index of currently selected pokemon
     previous: document.querySelector("#previous"), //next pokemon button
     next: document.querySelector("#next"), //previous pokemon button
-    trainer: undefined, //the trainer this pokedex belongs to (will be assigned later)
   }
 
   //add some properties to the stat elements
@@ -77,6 +105,8 @@ function initializePokedex(){
   });
   //show the chosen pokemon's data on the page
   pokedex.renderPokemon = function(pokemon){
+    //if a Pokemon instance wasn't passed in, choose the one at pokedex.index
+    pokemon = pokemon || pokedex.gym.get(pokedex.index);
     this.pokemonName.innerText = pokemon.name;
     //deactivate image spinner
     this.imgSpinner.style.display = "none";
@@ -111,24 +141,22 @@ function initializePokedex(){
 
     pokedex.height.innerText = pokemon.height;
     pokedex.weight.innerText = `${pokemon.weight} lbs`;
-  }
+  } //end pokedex.renderPokemon
 
   return pokedex;
-}
+} //end initializePokedex
 
-// janiceData((trainer) => {
-// })
+janiceData((trainer) => {
+})
 
 
 zaheenData((trainer, typesManager) => {
-  //Initialize pokedex
-  pokedex = initializePokedex();
-  //create trainer object that holds these pokemon
-  pokedex.trainer = trainer;
-  //set pokemon count in pokedex
-  pokedex.count = trainer.pokemon.length;
-  //render the first pokemon in the array
-  pokedex.renderPokemon(trainer.pokemon[0]);
+  //if pokedex hasn't been created yet, initialize pokedex
+  pokedex = pokedex || initializePokedex();
+  //add the trainer's pokemon to the gym
+  pokedex.gym.add(trainer.all());
+  //render the current pokemon in the gym
+  pokedex.renderPokemon();
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
