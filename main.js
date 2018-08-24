@@ -178,7 +178,7 @@ zaheenData((trainer, typesManager) => {
 function trainerInfo(trainer, index) {
  
   let trainerToolTip = Array.from(document.querySelectorAll(".tooltipped")) [index]
-  console.log(trainerToolTip)
+
   trainerToolTip.setAttribute("data-tooltip",  
     ` 
       name: ${ trainer.name}<br>
