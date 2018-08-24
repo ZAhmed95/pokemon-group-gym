@@ -29,11 +29,11 @@ function initializePokedex(){
     types: document.querySelector("#types"),
     weaknesses: document.querySelector("#weaknesses"),
     hp: document.querySelector("#stat-hp"),
-    atk: document.querySelector("#stat-atk"),
-    def: document.querySelector("#stat-def"),
+    attack: document.querySelector("#stat-atk"),
+    defense: document.querySelector("#stat-def"),
     speed: document.querySelector("#stat-speed"),
-    spAtk: document.querySelector("#stat-sp-atk"),
-    spDef: document.querySelector("#stat-sp-def"),
+    specialAttack: document.querySelector("#stat-sp-atk"),
+    specialDefense: document.querySelector("#stat-sp-def"),
     height: document.querySelector("#height"),
     weight: document.querySelector("#weight"),
     abilities: document.querySelector("#abilities"),
@@ -75,7 +75,7 @@ function initializePokedex(){
   }
 
   //add some properties to the stat elements
-  for (let statName of ["hp", "atk", "def", "spAtk", "spDef", "speed"]){
+  for (let statName of ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed"]){
     var stat = pokedex[statName];
     //store the stat element's text in a property
     stat.text = stat.querySelector(`#${stat.id}-text`);
@@ -86,14 +86,14 @@ function initializePokedex(){
   //Create functions to cycle through pokemon in pokedex
   function previous(){
     if (pokedex.count != 0){
-      pokedex.index = (pokedex.index - 1 + pokedex.count) % pokedex.count;
-      pokedex.renderPokemon(pokedex.trainer.pokemon[pokedex.index]);
+      pokedex.index = (pokedex.index - 1 + pokedex.gym.count()) % pokedex.gym.count();
+      pokedex.renderPokemon();
     }
   }
   function next(){
     if (pokedex.count != 0){
-      pokedex.index = (pokedex.index + 1 + pokedex.count) % pokedex.count;
-      pokedex.renderPokemon(pokedex.trainer.pokemon[pokedex.index]);
+      pokedex.index = (pokedex.index - 1 + pokedex.gym.count()) % pokedex.gym.count();
+      pokedex.renderPokemon();
     }
   }
   //add event listeners to control previous/next functions
@@ -107,11 +107,11 @@ function initializePokedex(){
   pokedex.renderPokemon = function(pokemon){
     //if a Pokemon instance wasn't passed in, choose the one at pokedex.index
     pokemon = pokemon || pokedex.gym.get(pokedex.index);
-    this.pokemonName.innerText = pokemon.name;
+    this.pokemonName.innerText = pokemon.get("name");
     //deactivate image spinner
     this.imgSpinner.style.display = "none";
-    this.pokemonImg.src = pokemon.image;
-    this.description.innerText = pokemon.description;
+    this.pokemonImg.src = pokemon.get("image");
+    this.description.innerText = pokemon.get("description");
     
     //function to set list items in a ul
     function renderList(ul, items){
@@ -119,44 +119,52 @@ function initializePokedex(){
     }
 
     //update types list
-    renderList(pokedex.types, pokemon.types);
+    renderList(pokedex.types, pokemon.get("types"));
     //update weaknesses list (Not yet implemented)
-    renderList(pokedex.weaknesses, pokemon.weaknesses);
+    renderList(pokedex.weaknesses, pokemon.get("weaknesses"));
     //update abilities list
-    renderList(pokedex.abilities, pokemon.abilities);
+    renderList(pokedex.abilities, pokemon.get("abilities"));
 
     //function to render a stat on the page
     function renderStat(statName){
       var stat = pokedex[statName];
-      var statData = pokemon.stats[statName];
+      var statData = pokemon.get(statName);
       //update the stat number
       stat.text.innerText = statData;
       //set the width of the colored bar appropriately
       stat.bar.style.width = `${Math.round(statData / 255 * 100)}%`;
     }
     //for each stat, update the elements on the page 
-    for (let statName of ["speed", "atk", "def", "spAtk", "spDef", "hp"]){
+    for (let statName of ["speed", "attack", "defense", "specialAttack", "specialDefense", "hp"]){
       renderStat(statName);
     }
 
-    pokedex.height.innerText = pokemon.height;
-    pokedex.weight.innerText = `${pokemon.weight} lbs`;
+    pokedex.height.innerText = pokemon.get("height");
+    pokedex.weight.innerText = `${pokemon.get("weight")} lbs`;
   } //end pokedex.renderPokemon
 
   return pokedex;
 } //end initializePokedex
 
-janiceData((trainer) => {
-})
-
-
-zaheenData((trainer, typesManager) => {
+function updatePokedex(trainer){
   //if pokedex hasn't been created yet, initialize pokedex
   pokedex = pokedex || initializePokedex();
   //add the trainer's pokemon to the gym
   pokedex.gym.add(trainer.all());
   //render the current pokemon in the gym
   pokedex.renderPokemon();
+}
+
+//when janice's data is ready,
+// janiceData((trainer) => {
+//   //update pokedex
+//   updatePokedex(trainer);
+// })
+
+//when zaheen's data is ready,
+zaheenData((trainer, typesManager) => {
+  //update pokedex
+  updatePokedex(trainer);
   //also, when the typesManager is ready, refresh the render to show
   //weaknesses list
   typesManager.onReady(() => {
