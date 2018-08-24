@@ -8,66 +8,72 @@ class Trainer {
   this.pokemon = [];
   }
   
+  all() {
+    return this.pokemon
+  }
+
   add(pokemon) {
-  this.pokemon.push(pokemon)
+    this.pokemon.push(pokemon)
   }
   
   get(name) {
-  return this.pokemon.find((element) => {
-  return element.name == name
+    return this.pokemon.find((element) => {
+    return element.name == name
   })
   }
   
   }
   
-  // console.log(terra);
   
   class Pokeball {
-  constructor() {
-  this.all = []
-  }
+    constructor() {
+      this.all = []
+    }
   
   add(pokemon) {
-  this.all.push(pokemon)
-  }
+    this.all.push(pokemon)
+    }
   
   get(name) {
-  return this.all.find((element) => {
-  return element.name = name
-  })
-  }
+    return this.all.find((element) => {
+    return element.name = name
+        })
+      }
   
-  }
+    }
   const pokeball = new Pokeball();
   console.log(pokeball);
   
   class Pokemon {
   
-  constructor(data, info) {
-  
-  this.id = data.id;
-  this.name = data.name;
-  this.weight = data.weight;
-  this.height = data.height;
-  this.type = data.types[0].type.name;
-  this.hp = data.stats[5].base_stat;
-  this.attack = data.stats[4].base_stat;
-  this.defense = data.stats[3].base_stat;
-  this.abilities = [];
-  this.info = info;
-  
-  for (let i = 0; i < data.abilities.length; i++) {
-  this.abilities.push(data.abilities[i].ability.name)
+    constructor(data, info) {
+    
+      this.image = data.sprites.front_default;
+      this.name = data.name;
+      this.weight = data.weight;
+      this.height = data.height;
+      this.types = data.types[0].type.name;
+      this.weaknesses = [];
+      this.speed = data.stats[0].base_stat;
+      this.hp = data.stats[5].base_stat;
+      this.attack = data.stats[4].base_stat;
+      this.defense = data.stats[3].base_stat;
+      this.specialAttack = data.stats[2].base_stat;
+      this.specialDefense = data.stats[1].base_stat;
+      this.abilities = [];
+      this.description = this.description;
+      
+      for (let i = 0; i < data.abilities.length; i++) {
+        this.abilities.push(data.abilities[i].ability.name)
+      }
+      
+    }
+    get(key) {
+      return this[key]
+
+    }
   }
-  
-  }
-  }
-  
-  
-  
-  
-  
-  
+
   
   
   const chooseBulbasaur = axios.get("https://pokeapi.co/api/v2/pokemon/1/");
@@ -76,11 +82,11 @@ class Trainer {
   
   axios.all([chooseBulbasaur, chooseCyndaquil, chooseLarvitar])
   
-  .then(catchem => {
+    .then(catchem => {
   
-  const poke1 = catchem[0].data;
-  const poke2 = catchem[1].data;
-  const poke3 = catchem[2].data;
+      const poke1 = catchem[0].data;
+      const poke2 = catchem[1].data;
+      const poke3 = catchem[2].data;
   
   console.log(poke1);
   
