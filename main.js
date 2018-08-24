@@ -181,11 +181,11 @@ function trainerInfo(trainer, index) {
   console.log(trainerToolTip)
   trainerToolTip.setAttribute("data-tooltip",  
     ` 
-      ${ trainer.name}<br>
-      ${ trainer.age}<br>
-      ${ trainer.gender}<br>
-      ${ trainer.trainerClass}<br>
-      ${ trainer.hometown}<br>
+      name: ${ trainer.name}<br>
+      age: ${ trainer.age}<br>
+      gender: ${ trainer.gender}<br>
+      class: ${ trainer.trainerClass}<br>
+      hometown: ${ trainer.hometown}<br>
     `)
   M.AutoInit();
 
