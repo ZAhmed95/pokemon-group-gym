@@ -63,7 +63,7 @@ class Trainer {
       this.specialAttack = data.stats[2].base_stat;
       this.specialDefense = data.stats[1].base_stat;
       this.abilities = [];
-      this.description = this.description;
+      this.description = info;
       
       for (let i = 0; i < data.abilities.length; i++) {
         this.abilities.push(data.abilities[i].ability.name)
