@@ -1,5 +1,21 @@
 M.AutoInit();
 
+// floating-nav-menu
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'bottom'
+  });
+});
+
+// tooltip for floating-nav-menu
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tooltipped');
+  var instances = M.Tooltip.init(elems, options);
+});
+
 var pokedex; //pokedex object that will be initialized
 
 //Function to initialize the pokedex
