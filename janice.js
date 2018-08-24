@@ -52,7 +52,7 @@ class Trainer {
       this.name = data.name;
       this.weight = data.weight;
       this.height = data.height;
-      this.types = data.types[0].type.name;
+      this.types = data.types.map(elem => elem.type.name)
       this.weaknesses = [];
       this.speed = data.stats[0].base_stat;
       this.hp = data.stats[5].base_stat;
@@ -103,7 +103,7 @@ class Trainer {
   console.log(bulbasaur);
   pokeball.add(bulbasaur);
   terra.add(bulbasaur);
-  terrasPokemon(bulbasaur);
+
   
   let cyndaquilInfo = "Cyndaquil protects itself by flaring up the flames on its back. The flames are vigorous if the Pokémon is angry. However, if it is tired, the flames splutter fitfully with incomplete combustion."
   
@@ -111,7 +111,7 @@ class Trainer {
   console.log(cyndaquil);
   pokeball.add(cyndaquil);
   terra.add(cyndaquil);
-  terrasPokemon(cyndaquil);
+ 
   
   let larvitarInfo = "Larvitar is born deep under the ground. To come up to the surface, this Pokémon must eat its way through the soil above. Until it does so, Larvitar cannot see its parents."
   
@@ -119,7 +119,7 @@ class Trainer {
   console.log(larvitar);
   pokeball.add(larvitar);
   terra.add(larvitar);
-  terrasPokemon(larvitar);
+ 
   
   console.log(pokeball);
   console.log(terra);
